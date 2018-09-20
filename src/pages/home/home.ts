@@ -10,28 +10,18 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
 
-  public items:any;
-  constructor(public alertCtrl: AlertController, public http: HttpClient) {
+  constructor(public alertCtrl: AlertController, public dataProvider: DataProvider) {
   }
 
   showAlert() {
     const alert = this.alertCtrl.create({
       title: 'Alert!',
-      subTitle: this.items,
+      subTitle: this.dataProvider.item,
       buttons: ['OK']
     });
-    this.getData();
-    alert.present();
-  }
+    this.dataProvider.getRemoteData();
 
-  getData(){
-  	let url = 'https://sheetsu.com/apis/v1.0su/7ab97bd3721d';
-  	let data: Observable<any> = this.http.get(url);
-  	let rand = (Math.floor(Math.random()*15));
-  	data.subscribe(result => {
-  		this.items=result[rand].messages;
-  		console.log(result);
-  	});
+    //alert.present();
   }
 
 }
