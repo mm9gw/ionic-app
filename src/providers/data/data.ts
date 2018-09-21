@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 /*
   Generated class for the DataProvider provider.
@@ -17,11 +18,7 @@ export class DataProvider {
   }
 
   getRemoteData(){
-  	let rand = (Math.floor(Math.random()*15));
-	this.http.get('https://sheetsu.com/apis/v1.0su/7ab97bd3721d').subscribe(result => {
-		this.item=result[rand].messages;
-    	console.log(result);
-    });
+	return this.http.get('https://sheetsu.com/apis/v1.0su/7ab97bd3721d');
   }
 
 }

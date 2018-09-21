@@ -13,13 +13,20 @@ export class HomePage {
   constructor(public alertCtrl: AlertController, public dataProvider: DataProvider) {
   }
 
+  public clicked = false;
   showAlert() {
-    const alert = this.alertCtrl.create({
-      title: 'Alert!',
-      subTitle: this.dataProvider.item,
-      buttons: ['OK']
+    let rand = (Math.floor(Math.random()*15));
+    this.dataProvider.getRemoteData().subscribe(result => {
+    	this.clicked=true;
+		this.dataProvider.item=result[rand].messages;
+    	console.log(result);
+    	const alert = this.alertCtrl.create({
+      	title: 'Alert!',
+      	subTitle: this.dataProvider.item,
+      	buttons: ['OK']
+    	});
+    	//alert.present();
     });
-    this.dataProvider.getRemoteData();
 
     //alert.present();
   }
