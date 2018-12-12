@@ -23,8 +23,7 @@ export class HomePage {
     let m = today.getMonth()+1; //January is 0!
     let y = today.getFullYear();
 
-    //let todayString = m+'/'+d+'/'+y;
-    let todayString = '';
+    let todayString = m+'/'+d+'/'+y;
     //this.storage.set('dateString', todayString);
 
     
